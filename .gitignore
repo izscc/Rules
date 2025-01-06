@@ -60,3 +60,5 @@ coverage/
 # 可选：esbuild 缓存（如果使用）
 .esbuild 
 .cursorrules
+bb/*
+
