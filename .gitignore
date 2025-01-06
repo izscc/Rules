@@ -1,0 +1,62 @@
+# VSCode 插件开发相关
+out/
+dist/
+node_modules/
+.vscode-test/
+*.vsix
+
+# TypeScript
+*.js
+*.js.map
+!jest.config.js
+!webpack.config.js
+
+# 编译缓存
+tsconfig.tsbuildinfo
+
+# macOS 系统文件
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS 缩略图
+._*
+
+# macOS 文件夹自定义属性
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# 日志文件
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# 测试覆盖率报告
+coverage/
+
+# 临时文件
+*.swp
+*.swo
+*~
+# 可选：esbuild 缓存（如果使用）
+.esbuild 
+.cursorrules
