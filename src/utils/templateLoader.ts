@@ -79,14 +79,37 @@ export class TemplateLoader {
         throw new Error('无法获取插件路径')
       }
 
-      const rolesPath = path.join(extensionPath, 'src', this.ROLES_DIR)
-      const templates: Template[] = []
+      const rolesPath = path.join(extensionPath, 'out', this.ROLES_DIR)
+      console.log('Template directory path:', rolesPath)
 
-      // 读取角色目录下的所有 JSON 文件
+      if (!fs.existsSync(rolesPath)) {
+        console.error('Template directory not found:', rolesPath)
+        const altPath = path.join(extensionPath, 'src', this.ROLES_DIR)
+        console.log('Trying alternative path:', altPath)
+        if (fs.existsSync(altPath)) {
+          const templates: Template[] = []
+          const files = fs.readdirSync(altPath).filter((file) => file.endsWith('.json'))
+          console.log('Found template files:', files)
+
+          for (const file of files) {
+            const filePath = path.join(altPath, file)
+            console.log('Loading template from:', filePath)
+            const content = fs.readFileSync(filePath, 'utf8')
+            const template = JSON.parse(content) as Template
+            templates.push(template)
+          }
+          return templates
+        }
+        return []
+      }
+
+      const templates: Template[] = []
       const files = fs.readdirSync(rolesPath).filter((file) => file.endsWith('.json'))
+      console.log('Found template files:', files)
 
       for (const file of files) {
         const filePath = path.join(rolesPath, file)
+        console.log('Loading template from:', filePath)
         const content = fs.readFileSync(filePath, 'utf8')
         const template = JSON.parse(content) as Template
         templates.push(template)
@@ -94,6 +117,7 @@ export class TemplateLoader {
 
       return templates
     } catch (error) {
+      console.error('Error loading templates:', error)
       const errorMessage = error instanceof Error ? error.message : '未知错误'
       throw new Error(`加载模板失败: ${errorMessage}`)
     }

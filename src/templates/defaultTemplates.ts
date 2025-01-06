@@ -1,13 +1,28 @@
-import * as fs from 'fs'
-import * as path from 'path'
+import { TemplateLoader } from '../utils/templateLoader'
 
-export interface CursorRule {
+export interface Template {
   name: string
   description: string
   content: string
 }
 
-const templatesPath = path.join(__dirname, 'templates.json')
-const templatesJson = JSON.parse(fs.readFileSync(templatesPath, 'utf8'))
+export async function getDefaultTemplates(): Promise<Template[]> {
+  try {
+    const roleTemplates = await TemplateLoader.loadTemplates()
+    const templates: Template[] = []
 
-export const defaultTemplates: CursorRule[] = Object.values(templatesJson)
+    for (const roleTemplate of roleTemplates) {
+      const content = await TemplateLoader.generateCursorRules(roleTemplate)
+      templates.push({
+        name: roleTemplate.name,
+        description: roleTemplate.description,
+        content: content,
+      })
+    }
+
+    return templates
+  } catch (error) {
+    console.error('加载模板失败:', error)
+    return []
+  }
+}
