@@ -1,0 +1,43 @@
+{
+  "name": "cursor-rules-template",
+  "displayName": "Cursor Rules Template",
+  "description": "VSCode插件用于管理和应用.cursorrules模板",
+  "version": "0.0.1",
+  "author": "kelisiWu123",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kelisiWu123/cursor-rules-wizard.git"
+  },
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:cursor-rules.applyTemplate"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cursor-rules.applyTemplate",
+        "title": "应用Cursor规则模板"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^16.x.x",
+    "@types/vscode": "^1.60.0",
+    "@typescript-eslint/eslint-plugin": "^5.x.x",
+    "@typescript-eslint/parser": "^5.x.x",
+    "eslint": "^8.x.x",
+    "typescript": "^4.x.x"
+  }
+}
