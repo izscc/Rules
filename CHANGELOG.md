@@ -33,3 +33,20 @@ All notable changes to the "cursor-rules-template" extension will be documented 
 
 - 修复模板路径处理问题
 - 优化插件激活事件
+
+## [1.0.6] - 2024-01-09
+
+### Added
+
+- 添加右键菜单保存模板功能
+  - 支持将任意 .cursorrules 文件保存为模板
+  - 可自定义模板名称和描述
+  - 保存的模板会在模板列表中显示
+- 优化模板管理机制
+  - 用户自定义模板优先于内置模板
+  - 支持同名模板覆盖
+
+### Changed
+
+- 改进模板加载逻辑，支持用户自定义模板
+- 优化模板存储结构
