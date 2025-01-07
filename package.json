@@ -2,7 +2,7 @@
   "name": "cursor-rules-template",
   "displayName": "Cursor Rules Template",
   "description": "A VSCode extension for managing and applying .cursorrules templates | VSCode插件用于管理和应用.cursorrules模板",
-  "version": "1.0.7",
+  "version": "1.0.6",
   "publisher": "kelisiWu",
   "author": "kelisiWu",
   "repository": {
