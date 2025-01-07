@@ -1,8 +1,12 @@
 import * as vscode from 'vscode'
 import { getDefaultTemplates } from '../templates/defaultTemplates'
 import { createCursorRuleFile } from '../utils/fileUtils'
+import { TemplateLoader } from '../utils/templateLoader'
 
 export function registerTemplateCommands(context: vscode.ExtensionContext) {
+  // 设置上下文
+  TemplateLoader.setContext(context)
+
   let disposable = vscode.commands.registerCommand('cursor-rules.applyTemplate', async () => {
     try {
       const templates = await getDefaultTemplates()

@@ -29,6 +29,12 @@ const templateCommands_1 = require("./commands/templateCommands");
 function activate(context) {
     try {
         console.log('Activating Cursor Rules Template extension');
+        // 确保扩展存储目录存在
+        const storageUri = context.globalStorageUri;
+        const fs = require('fs');
+        if (!fs.existsSync(storageUri.fsPath)) {
+            fs.mkdirSync(storageUri.fsPath, { recursive: true });
+        }
         (0, templateCommands_1.registerTemplateCommands)(context);
         console.log('Cursor Rules Template extension activated successfully');
     }

@@ -1,121 +1,49 @@
 # Cursor Rules Template
 
-VSCode 插件用于管理和应用.cursorrules 模板，帮助用户快速设置 AI 编程助手的角色和行为规范。
+A VSCode extension for managing and applying .cursorrules templates.
 
-## 特性
+这是一个用于管理和应用 .cursorrules 模板的 VSCode 插件。
 
-- 提供多种预设的专业角色模板
-- 支持自定义角色模板
-- 简单易用的命令界面
-- 实时预览模板效果
+## Features | 功能
 
-## 使用方法
+- Apply predefined .cursorrules templates | 应用预定义的 .cursorrules 模板
+- Multiple role templates available | 提供多个角色模板
+- Easy to use command palette integration | 易于使用的命令面板集成
 
-1. 在命令面板中输入 "应用 Cursor 规则模板"
-2. 选择想要使用的角色模板
-3. 模板将自动应用到当前工作区
+## Usage | 使用方法
 
-## 可用模板
+1. Open Command Palette (Ctrl+Shift+P or Cmd+Shift+P)
+2. Type "Apply Cursor Rules Template" | 输入"应用 Cursor 规则模板"
+3. Select a template from the list | 从列表中选择一个模板
+4. The template will be applied to your workspace | 模板将被应用到你的工作区
 
-### 开发专家系列
+## Available Templates | 可用模板
 
-- Java 专家：精通 Spring Boot 全家桶的资深工程师
+- AI Assistant
+- Python Expert
+- Unity Developer
+- Product Manager
+- VSCode Expert
+- And more... | 更多模板...
 
-  - 专注于企业级应用开发
-  - 微服务架构设计
-  - 性能优化和最佳实践
+## Requirements | 要求
 
-- Python 专家：精通 Web 开发、数据科学的 Python 工程师
+- VSCode 1.60.0 or above | VSCode 1.60.0 或更高版本
 
-  - Web 开发（Django/FastAPI/Flask）
-  - 数据科学和机器学习
-  - 自动化工具开发
+## Extension Settings | 插件设置
 
-- VSCode 插件专家：精通 VSCode 插件开发的资深工程师
+This extension contributes the following settings:
 
-  - 插件 API 开发
-  - 用户体验优化
-  - 性能调优
+- `cursor-rules.applyTemplate`: Apply a Cursor rules template
 
-- Electron 专家：精通桌面应用开发的资深工程师
-  - 跨平台桌面应用开发
-  - 性能优化
-  - 原生功能集成
+## Release Notes | 发布说明
 
-### 移动开发专家
+### 0.0.4
 
-- Taro 专家：精通跨端开发的资深工程师
+Initial release of Cursor Rules Template | 初始版本发布
 
-  - 多端统一开发
-  - 性能优化
-  - 组件库开发
+## Issues | 问题反馈
 
-- UniApp 专家：精通多端开发的资深工程师
-  - Vue 开发
-  - 跨平台适配
-  - 性能优化
+If you find any issues, please report them on our [GitHub repository](https://github.com/kelisiWu123/cursor-rules-wizard/issues).
 
-### AI 领域专家
-
-- AI Prompt 专家：精通提示词工程的 AI 工程师
-
-  - LLM 应用开发
-  - 提示词优化
-  - AI 安全和伦理
-
-- Cursor Rule 专家：精通 AI 编程助手角色设计
-
-  - 角色设计和定制
-  - 行为规范制定
-  - 交互模式优化
-
-- AI 助手：通用 AI 编程助手
-  - 代码开发辅助
-  - 问题诊断和解决
-  - 技术方案建议
-
-### 游戏开发专家
-
-- Unity 猫娘：可爱的二次元 Unity 游戏开发专家
-  - 游戏开发和优化
-  - 图形渲染技术
-  - 性能调优
-  - 可爱的猫娘风格交互
-
-### 产品和架构专家
-
-- 产品经理：专业的产品规划和管理专家
-
-  - 需求分析
-  - 产品规划
-  - 用户体验设计
-
-- 技术架构师：资深系统架构设计专家
-  - 系统架构设计
-  - 技术选型
-  - 性能优化方案
-
-## 模板特点
-
-每个模板都包含：
-
-- 专业的角色定位
-- 完整的技术栈定义
-- 最佳实践指南
-- 开发工具推荐
-- 项目结构建议
-- 标准开发流程
-- 调试和优化指南
-
-## 贡献
-
-欢迎提交 Issue 和 Pull Request 来帮助改进这个插件！你也可以：
-
-- 提供新的角色模板
-- 优化现有模板
-- 改进插件功能
-- 报告问题和建议
-
-## 许可证
-
-MIT
+如果你发现任何问题，请在我们的 [GitHub 仓库](https://github.com/kelisiWu123/cursor-rules-wizard/issues)上报告。

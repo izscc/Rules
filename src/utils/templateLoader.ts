@@ -71,52 +71,62 @@ interface Template {
 
 export class TemplateLoader {
   private static readonly ROLES_DIR = 'templates/roles'
+  private static extensionContext: vscode.ExtensionContext
+
+  static setContext(context: vscode.ExtensionContext) {
+    this.extensionContext = context
+  }
 
   static async loadTemplates(): Promise<Template[]> {
     try {
       // 在开发模式下使用不同的方式获取路径
       let extensionPath: string
-      const extension = vscode.extensions.getExtension('kelisiWu123.cursor-rules-template')
+      const extension = vscode.extensions.getExtension('kelisiWu.cursor-rules-template')
 
       if (extension) {
         extensionPath = extension.extensionPath
-        console.log('Extension found, using path:', extensionPath)
+        console.log('【Debug】Extension found, path:', extensionPath)
+        console.log('【Debug】Extension is active:', extension.isActive)
       } else {
         // 在开发模式下，直接使用工作区路径
         const workspaceFolders = vscode.workspace.workspaceFolders
         if (!workspaceFolders) {
+          console.error('【Debug】No workspace folders found')
           throw new Error('未找到工作区')
         }
         extensionPath = workspaceFolders[0].uri.fsPath
-        console.log('Using workspace path for development:', extensionPath)
+        console.log('【Debug】Using workspace path:', extensionPath)
       }
 
       const templates: Template[] = []
 
       // 尝试从 out 目录加载
       const outPath = path.join(extensionPath, 'out', this.ROLES_DIR)
-      console.log('Trying out directory path:', outPath)
+      console.log('【Debug】Checking out directory path:', outPath)
+      console.log('【Debug】Out directory exists:', fs.existsSync(outPath))
 
       // 尝试从 src 目录加载
       const srcPath = path.join(extensionPath, 'src', this.ROLES_DIR)
-      console.log('Trying src directory path:', srcPath)
+      console.log('【Debug】Checking src directory path:', srcPath)
+      console.log('【Debug】Src directory exists:', fs.existsSync(srcPath))
 
       // 确定使用哪个路径
       let templatesPath = ''
       if (fs.existsSync(outPath)) {
         templatesPath = outPath
-        console.log('Using out directory for templates')
+        console.log('【Debug】Using out directory for templates')
       } else if (fs.existsSync(srcPath)) {
         templatesPath = srcPath
-        console.log('Using src directory for templates')
+        console.log('【Debug】Using src directory for templates')
       } else {
-        console.error('No template directory found')
-        console.error('Checked paths:', { outPath, srcPath })
+        console.error('【Debug】No template directory found')
+        console.error('【Debug】Checked paths:', { outPath, srcPath })
         throw new Error('找不到模板目录')
       }
 
       const files = fs.readdirSync(templatesPath).filter((file) => file.endsWith('.json'))
-      console.log('Found template files:', files)
+      console.log('【Debug】Found template files:', files)
+      console.log('【Debug】Template files count:', files.length)
 
       if (files.length === 0) {
         console.warn('No template files found in:', templatesPath)
@@ -132,7 +142,6 @@ export class TemplateLoader {
           templates.push(template)
         } catch (error) {
           console.error(`Error loading template ${file}:`, error)
-          // 继续加载其他模板
           continue
         }
       }

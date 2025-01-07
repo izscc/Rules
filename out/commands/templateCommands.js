@@ -27,7 +27,10 @@ exports.registerTemplateCommands = void 0;
 const vscode = __importStar(require("vscode"));
 const defaultTemplates_1 = require("../templates/defaultTemplates");
 const fileUtils_1 = require("../utils/fileUtils");
+const templateLoader_1 = require("../utils/templateLoader");
 function registerTemplateCommands(context) {
+    // 设置上下文
+    templateLoader_1.TemplateLoader.setContext(context);
     let disposable = vscode.commands.registerCommand('cursor-rules.applyTemplate', async () => {
         try {
             const templates = await (0, defaultTemplates_1.getDefaultTemplates)();

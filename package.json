@@ -1,8 +1,8 @@
 {
   "name": "cursor-rules-template",
   "displayName": "Cursor Rules Template",
-  "description": "VSCode插件用于管理和应用.cursorrules模板",
-  "version": "1.0.3",
+  "description": "A VSCode extension for managing and applying .cursorrules templates | VSCode插件用于管理和应用.cursorrules模板",
+  "version": "1.0.5",
   "publisher": "kelisiWu",
   "author": "kelisiWu",
   "repository": {
@@ -40,7 +40,7 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./ && npm run copy-templates",
-    "copy-templates": "mkdir -p out/templates/roles && cp src/templates/roles/*.json out/templates/roles/",
+    "copy-templates": "mkdir -p out/templates/roles && cp -r src/templates/roles/*.json out/templates/roles/",
     "watch": "tsc -watch -p ./",
     "lint": "eslint src --ext ts"
   },
