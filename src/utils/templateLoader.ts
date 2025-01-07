@@ -74,52 +74,73 @@ export class TemplateLoader {
 
   static async loadTemplates(): Promise<Template[]> {
     try {
-      const extensionPath = vscode.extensions.getExtension('cursor-rules-template')?.extensionPath
-      if (!extensionPath) {
-        throw new Error('无法获取插件路径')
-      }
+      // 在开发模式下使用不同的方式获取路径
+      let extensionPath: string
+      const extension = vscode.extensions.getExtension('kelisiWu123.cursor-rules-template')
 
-      const rolesPath = path.join(extensionPath, 'out', this.ROLES_DIR)
-      console.log('Template directory path:', rolesPath)
-
-      if (!fs.existsSync(rolesPath)) {
-        console.error('Template directory not found:', rolesPath)
-        const altPath = path.join(extensionPath, 'src', this.ROLES_DIR)
-        console.log('Trying alternative path:', altPath)
-        if (fs.existsSync(altPath)) {
-          const templates: Template[] = []
-          const files = fs.readdirSync(altPath).filter((file) => file.endsWith('.json'))
-          console.log('Found template files:', files)
-
-          for (const file of files) {
-            const filePath = path.join(altPath, file)
-            console.log('Loading template from:', filePath)
-            const content = fs.readFileSync(filePath, 'utf8')
-            const template = JSON.parse(content) as Template
-            templates.push(template)
-          }
-          return templates
+      if (extension) {
+        extensionPath = extension.extensionPath
+        console.log('Extension found, using path:', extensionPath)
+      } else {
+        // 在开发模式下，直接使用工作区路径
+        const workspaceFolders = vscode.workspace.workspaceFolders
+        if (!workspaceFolders) {
+          throw new Error('未找到工作区')
         }
-        return []
+        extensionPath = workspaceFolders[0].uri.fsPath
+        console.log('Using workspace path for development:', extensionPath)
       }
 
       const templates: Template[] = []
-      const files = fs.readdirSync(rolesPath).filter((file) => file.endsWith('.json'))
+
+      // 尝试从 out 目录加载
+      const outPath = path.join(extensionPath, 'out', this.ROLES_DIR)
+      console.log('Trying out directory path:', outPath)
+
+      // 尝试从 src 目录加载
+      const srcPath = path.join(extensionPath, 'src', this.ROLES_DIR)
+      console.log('Trying src directory path:', srcPath)
+
+      // 确定使用哪个路径
+      let templatesPath = ''
+      if (fs.existsSync(outPath)) {
+        templatesPath = outPath
+        console.log('Using out directory for templates')
+      } else if (fs.existsSync(srcPath)) {
+        templatesPath = srcPath
+        console.log('Using src directory for templates')
+      } else {
+        console.error('No template directory found')
+        console.error('Checked paths:', { outPath, srcPath })
+        throw new Error('找不到模板目录')
+      }
+
+      const files = fs.readdirSync(templatesPath).filter((file) => file.endsWith('.json'))
       console.log('Found template files:', files)
 
+      if (files.length === 0) {
+        console.warn('No template files found in:', templatesPath)
+        return []
+      }
+
       for (const file of files) {
-        const filePath = path.join(rolesPath, file)
-        console.log('Loading template from:', filePath)
-        const content = fs.readFileSync(filePath, 'utf8')
-        const template = JSON.parse(content) as Template
-        templates.push(template)
+        try {
+          const filePath = path.join(templatesPath, file)
+          console.log('Loading template from:', filePath)
+          const content = fs.readFileSync(filePath, 'utf8')
+          const template = JSON.parse(content) as Template
+          templates.push(template)
+        } catch (error) {
+          console.error(`Error loading template ${file}:`, error)
+          // 继续加载其他模板
+          continue
+        }
       }
 
       return templates
     } catch (error) {
-      console.error('Error loading templates:', error)
-      const errorMessage = error instanceof Error ? error.message : '未知错误'
-      throw new Error(`加载模板失败: ${errorMessage}`)
+      console.error('Error in loadTemplates:', error)
+      throw error
     }
   }
 
