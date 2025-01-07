@@ -1,140 +1,121 @@
 # Cursor Rules Template
 
-[![Version](https://img.shields.io/visual-studio-marketplace/v/cursor-rules-template)](https://marketplace.visualstudio.com/items?itemName=cursor-rules-template)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![VSCode](https://img.shields.io/badge/VSCode-1.60+-blue.svg)](https://code.visualstudio.com/)
+VSCode 插件用于管理和应用.cursorrules 模板，帮助用户快速设置 AI 编程助手的角色和行为规范。
 
-一个用于快速创建和管理 `.cursorrules` 模板的 VSCode 插件。通过这个插件，你可以轻松地在项目中应用预定义的 Cursor AI 规则模板，提高开发效率。
+## 特性
 
-## ✨ 特性
+- 提供多种预设的专业角色模板
+- 支持自定义角色模板
+- 简单易用的命令界面
+- 实时预览模板效果
 
-- 🚀 快速应用预定义的 `.cursorrules` 模板
-- 📝 支持多种常用的模板场景
-- 🔄 智能处理已存在的配置文件
-- 💡 简单直观的用户界面
+## 使用方法
 
-## 📦 安装
+1. 在命令面板中输入 "应用 Cursor 规则模板"
+2. 选择想要使用的角色模板
+3. 模板将自动应用到当前工作区
 
-### 从 VS Code 扩展市场安装
+## 可用模板
 
-1. 打开 VS Code
-2. 按下 `Ctrl+P` / `Cmd+P` 打开命令面板
-3. 输入 `ext install cursor-rules-template`
-4. 点击安装
+### 开发专家系列
 
-### 从 VSIX 文件安装
+- Java 专家：精通 Spring Boot 全家桶的资深工程师
 
-1. 下载最新的 `.vsix` 文件
-2. 在 VS Code 中，选择 `扩展` 视图
-3. 点击 `...` 更多操作按钮
-4. 选择 `从 VSIX 安装...`
-5. 选择下载的 `.vsix` 文件
+  - 专注于企业级应用开发
+  - 微服务架构设计
+  - 性能优化和最佳实践
 
-## 🚀 使用方法
+- Python 专家：精通 Web 开发、数据科学的 Python 工程师
 
-1. 在 VS Code 中打开你的项目
-2. 按下 `Ctrl+Shift+P` / `Cmd+Shift+P` 打开命令面板
-3. 输入 "应用 Cursor 规则模板" 并选择
-4. 从列表中选择想要应用的模板
-5. 确认创建或覆盖 `.cursorrules` 文件
+  - Web 开发（Django/FastAPI/Flask）
+  - 数据科学和机器学习
+  - 自动化工具开发
 
-## 📋 可用模板
+- VSCode 插件专家：精通 VSCode 插件开发的资深工程师
 
-本插件提供了多个预定义的角色模板，每个角色都有其特定的配置和行为规范：
+  - 插件 API 开发
+  - 用户体验优化
+  - 性能调优
 
-### 🤖 AI 助手
+- Electron 专家：精通桌面应用开发的资深工程师
+  - 跨平台桌面应用开发
+  - 性能优化
+  - 原生功能集成
 
-- 专注于帮助用户解决问题
-- 使用清晰简洁的语言
-- 提供具体的示例和解决方案
+### 移动开发专家
 
-### 📊 产品经理
+- Taro 专家：精通跨端开发的资深工程师
 
-- 深入理解用户需求
-- 制定产品策略
-- 平衡各方需求
-- 关注市场趋势
+  - 多端统一开发
+  - 性能优化
+  - 组件库开发
 
-### 🏗️ 技术架构师
+- UniApp 专家：精通多端开发的资深工程师
+  - Vue 开发
+  - 跨平台适配
+  - 性能优化
 
-- 设计可扩展的系统架构
-- 制定技术标准
-- 确保系统质量
-- 保持技术前瞻性
+### AI 领域专家
 
-### 🔧 自定义模板
+- AI Prompt 专家：精通提示词工程的 AI 工程师
 
-你还可以创建自己的角色模板：
+  - LLM 应用开发
+  - 提示词优化
+  - AI 安全和伦理
 
-1. 在 `src/templates/roles` 目录下创建新的 JSON 文件
-2. 按照现有模板的格式定义角色特性
-3. 重启 VSCode 后即可使用新模板
+- Cursor Rule 专家：精通 AI 编程助手角色设计
 
-## 🛠️ 开发
+  - 角色设计和定制
+  - 行为规范制定
+  - 交互模式优化
 
-### 环境要求
+- AI 助手：通用 AI 编程助手
+  - 代码开发辅助
+  - 问题诊断和解决
+  - 技术方案建议
 
-- Node.js (>= 14.x)
-- VS Code (>= 1.60.0)
+### 游戏开发专家
 
-### 本地开发
+- Unity 猫娘：可爱的二次元 Unity 游戏开发专家
+  - 游戏开发和优化
+  - 图形渲染技术
+  - 性能调优
+  - 可爱的猫娘风格交互
 
-```bash
-# 克隆仓库
-git clone https://github.com/yourusername/cursor-rules-template.git
+### 产品和架构专家
 
-# 安装依赖
-npm install
+- 产品经理：专业的产品规划和管理专家
 
-# 编译
-npm run compile
+  - 需求分析
+  - 产品规划
+  - 用户体验设计
 
-# 运行测试
-npm run test
-```
+- 技术架构师：资深系统架构设计专家
+  - 系统架构设计
+  - 技术选型
+  - 性能优化方案
 
-### 打包
+## 模板特点
 
-```bash
-# 安装 vsce
-npm install -g @vscode/vsce
+每个模板都包含：
 
-# 打包
-vsce package
-```
+- 专业的角色定位
+- 完整的技术栈定义
+- 最佳实践指南
+- 开发工具推荐
+- 项目结构建议
+- 标准开发流程
+- 调试和优化指南
 
-## 📝 更新日志
+## 贡献
 
-### [0.0.1] - 2024-01-xx
+欢迎提交 Issue 和 Pull Request 来帮助改进这个插件！你也可以：
 
-- 🎉 初始版本发布
-- ✨ 添加基本模板功能
-- 🐛 修复已知问题
+- 提供新的角色模板
+- 优化现有模板
+- 改进插件功能
+- 报告问题和建议
 
-## 🤝 贡献
+## 许可证
 
-欢迎提交 Issue 和 Pull Request！
-
-1. Fork 本仓库
-2. 创建你的特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交你的更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启一个 Pull Request
-
-## 📄 许可证
-
-本项目基于 MIT 许可证开源 - 查看 [LICENSE](LICENSE) 文件了解更多详情。
-
-## 👨‍💻 作者
-
-- 作者名字
-- GitHub: [@kelisiWu123](https://github.com/kelisiWu123)
-
-## 🙏 致谢
-
-- [VS Code](https://code.visualstudio.com/) - 最好的代码编辑器
-- [Cursor](https://cursor.sh/) - 强大的 AI 编程助手
-
----
-
-如果这个项目对你有帮助，请给它一个 ⭐️！
+MIT

@@ -15,6 +15,11 @@
   "categories": [
     "Other"
   ],
+  "icon": "resources/icon.png",
+  "galleryBanner": {
+    "color": "#C80000",
+    "theme": "dark"
+  },
   "activationEvents": [
     "onStartupFinished"
   ],
@@ -24,7 +29,11 @@
       {
         "command": "cursor-rules.applyTemplate",
         "title": "应用Cursor规则模板",
-        "category": "Cursor Rules"
+        "category": "Cursor Rules",
+        "icon": {
+          "light": "resources/light-icon.png",
+          "dark": "resources/dark-icon.png"
+        }
       }
     ]
   },
