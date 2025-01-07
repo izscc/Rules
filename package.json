@@ -2,9 +2,9 @@
   "name": "cursor-rules-template",
   "displayName": "Cursor Rules Template",
   "description": "VSCode插件用于管理和应用.cursorrules模板",
-  "version": "0.0.1",
-  "publisher": "kelisiWu123",
-  "author": "kelisiWu123",
+  "version": "1.0.3",
+  "publisher": "kelisiWu",
+  "author": "kelisiWu",
   "repository": {
     "type": "git",
     "url": "https://github.com/kelisiWu123/cursor-rules-wizard.git"
