@@ -34,8 +34,21 @@
           "light": "resources/light-icon.png",
           "dark": "resources/dark-icon.png"
         }
+      },
+      {
+        "command": "cursor-rules.saveAsTemplate",
+        "title": "保存为 Cursor Rules 模板"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "resourceFilename == '.cursorrules'",
+          "command": "cursor-rules.saveAsTemplate",
+          "group": "cursorRules"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

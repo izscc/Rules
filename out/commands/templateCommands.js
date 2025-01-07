@@ -28,10 +28,13 @@ const vscode = __importStar(require("vscode"));
 const defaultTemplates_1 = require("../templates/defaultTemplates");
 const fileUtils_1 = require("../utils/fileUtils");
 const templateLoader_1 = require("../utils/templateLoader");
+const fs = __importStar(require("fs"));
+const path = __importStar(require("path"));
 function registerTemplateCommands(context) {
     // 设置上下文
     templateLoader_1.TemplateLoader.setContext(context);
-    let disposable = vscode.commands.registerCommand('cursor-rules.applyTemplate', async () => {
+    // 注册应用模板命令
+    let applyTemplateDisposable = vscode.commands.registerCommand('cursor-rules.applyTemplate', async () => {
         try {
             const templates = await (0, defaultTemplates_1.getDefaultTemplates)();
             if (templates.length === 0) {
@@ -61,7 +64,61 @@ function registerTemplateCommands(context) {
             vscode.window.showErrorMessage(`加载模板失败: ${errorMessage}`);
         }
     });
-    context.subscriptions.push(disposable);
+    // 注册保存模板命令
+    let saveTemplateDisposable = vscode.commands.registerCommand('cursor-rules.saveAsTemplate', async (uri) => {
+        try {
+            if (!uri) {
+                vscode.window.showErrorMessage('请在 .cursorrules 文件上右键选择此命令');
+                return;
+            }
+            // 读取文件内容
+            const content = await fs.promises.readFile(uri.fsPath, 'utf-8');
+            // 获取模板名称
+            const templateName = await vscode.window.showInputBox({
+                prompt: '请输入模板名称',
+                placeHolder: '例如：My Custom Template',
+                validateInput: (value) => {
+                    if (!value) {
+                        return '模板名称不能为空';
+                    }
+                    if (value.length > 50) {
+                        return '模板名称不能超过50个字符';
+                    }
+                    return null;
+                },
+            });
+            if (!templateName) {
+                return;
+            }
+            // 获取模板描述
+            const templateDescription = await vscode.window.showInputBox({
+                prompt: '请输入模板描述',
+                placeHolder: '例如：这是一个自定义的模板',
+            });
+            if (!templateDescription) {
+                return;
+            }
+            // 构建模板对象
+            const template = {
+                name: templateName,
+                description: templateDescription,
+                content: content,
+            };
+            // 保存模板到用户目录
+            const templateDir = path.join(context.globalStorageUri.fsPath, 'templates');
+            if (!fs.existsSync(templateDir)) {
+                fs.mkdirSync(templateDir, { recursive: true });
+            }
+            const templatePath = path.join(templateDir, `${templateName.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.json`);
+            await fs.promises.writeFile(templatePath, JSON.stringify(template, null, 2), 'utf-8');
+            vscode.window.showInformationMessage(`模板 "${templateName}" 保存成功`);
+        }
+        catch (error) {
+            const errorMessage = error instanceof Error ? error.message : '未知错误';
+            vscode.window.showErrorMessage(`保存模板失败: ${errorMessage}`);
+        }
+    });
+    context.subscriptions.push(applyTemplateDisposable, saveTemplateDisposable);
 }
 exports.registerTemplateCommands = registerTemplateCommands;
 //# sourceMappingURL=templateCommands.js.map
