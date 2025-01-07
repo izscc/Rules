@@ -50,3 +50,18 @@ All notable changes to the "cursor-rules-template" extension will be documented 
 
 - 改进模板加载逻辑，支持用户自定义模板
 - 优化模板存储结构
+
+## [1.0.7] - 2024-01-09
+
+### Added
+
+- 添加文件夹右键创建模板文件功能
+  - 支持在任意文件夹中创建 .cursorrules 文件
+  - 可从现有模板中选择
+  - 自动打开新创建的文件
+  - 支持文件覆盖确认
+
+### Changed
+
+- 优化用户界面文案
+- 改进错误处理机制

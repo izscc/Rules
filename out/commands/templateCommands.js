@@ -118,7 +118,56 @@ function registerTemplateCommands(context) {
             vscode.window.showErrorMessage(`保存模板失败: ${errorMessage}`);
         }
     });
-    context.subscriptions.push(applyTemplateDisposable, saveTemplateDisposable);
+    // 注册在文件夹中创建模板文件的命令
+    let createFromTemplateDisposable = vscode.commands.registerCommand('cursor-rules.createFromTemplate', async (uri) => {
+        try {
+            if (!uri) {
+                vscode.window.showErrorMessage('请在文件夹上右键选择此命令');
+                return;
+            }
+            const templates = await (0, defaultTemplates_1.getDefaultTemplates)();
+            if (templates.length === 0) {
+                vscode.window.showErrorMessage('没有可用的模板');
+                return;
+            }
+            // 选择模板
+            const selected = await vscode.window.showQuickPick(templates.map((template) => ({
+                label: template.name,
+                description: template.description,
+                template: template,
+            })), {
+                placeHolder: '选择要创建的模板',
+            });
+            if (selected) {
+                try {
+                    // 构建目标文件路径
+                    const targetPath = path.join(uri.fsPath, '.cursorrules');
+                    // 检查文件是否已存在
+                    if (fs.existsSync(targetPath)) {
+                        const overwrite = await vscode.window.showWarningMessage('该文件夹下已存在 .cursorrules 文件，是否覆盖？', '覆盖', '取消');
+                        if (overwrite !== '覆盖') {
+                            return;
+                        }
+                    }
+                    // 写入文件
+                    await fs.promises.writeFile(targetPath, selected.template.content, 'utf-8');
+                    // 打开新创建的文件
+                    const document = await vscode.workspace.openTextDocument(targetPath);
+                    await vscode.window.showTextDocument(document);
+                    vscode.window.showInformationMessage(`成功创建 ${selected.label} 模板文件`);
+                }
+                catch (error) {
+                    const errorMessage = error instanceof Error ? error.message : '未知错误';
+                    vscode.window.showErrorMessage(`创建模板文件失败: ${errorMessage}`);
+                }
+            }
+        }
+        catch (error) {
+            const errorMessage = error instanceof Error ? error.message : '未知错误';
+            vscode.window.showErrorMessage(`加载模板失败: ${errorMessage}`);
+        }
+    });
+    context.subscriptions.push(applyTemplateDisposable, saveTemplateDisposable, createFromTemplateDisposable);
 }
 exports.registerTemplateCommands = registerTemplateCommands;
 //# sourceMappingURL=templateCommands.js.map

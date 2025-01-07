@@ -2,7 +2,7 @@
   "name": "cursor-rules-template",
   "displayName": "Cursor Rules Template",
   "description": "A VSCode extension for managing and applying .cursorrules templates | VSCode插件用于管理和应用.cursorrules模板",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "publisher": "kelisiWu",
   "author": "kelisiWu",
   "repository": {
@@ -28,7 +28,7 @@
     "commands": [
       {
         "command": "cursor-rules.applyTemplate",
-        "title": "应用Cursor规则模板",
+        "title": "应用 Cursor Rules 模板",
         "category": "Cursor Rules",
         "icon": {
           "light": "resources/light-icon.png",
@@ -38,6 +38,11 @@
       {
         "command": "cursor-rules.saveAsTemplate",
         "title": "保存为 Cursor Rules 模板"
+      },
+      {
+        "command": "cursor-rules.createFromTemplate",
+        "title": "创建 Cursor Rules 模板文件",
+        "category": "Cursor Rules"
       }
     ],
     "menus": {
@@ -45,6 +50,11 @@
         {
           "when": "resourceFilename == '.cursorrules'",
           "command": "cursor-rules.saveAsTemplate",
+          "group": "cursorRules"
+        },
+        {
+          "when": "explorerResourceIsFolder",
+          "command": "cursor-rules.createFromTemplate",
           "group": "cursorRules"
         }
       ]
