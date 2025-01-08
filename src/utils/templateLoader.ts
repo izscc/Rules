@@ -165,6 +165,13 @@ export class TemplateLoader {
         }
       }
 
+      // 添加沟通风格
+      if (content.communication_style && typeof content.communication_style === 'object') {
+        sections.push('## 沟通风格')
+        for (const [key, value] of Object.entries(content.communication_style)) {
+          sections.push(`### ${this.formatTitle(key)}\n- ${value}`)
+        }
+      }
       return sections.join('\n\n')
     }
 
