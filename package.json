@@ -1,8 +1,8 @@
 {
-  "name": "cursor-rules",
+  "name": "miao-cursor-rules",
   "displayName": "喵: 中文 Cursor Rules",
   "description": "喵喵喵~自定义光标规则模板 | Custom cursor rules template",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "kelisiWu",
   "author": "kelisiWu",
   "repository": {

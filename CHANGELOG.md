@@ -65,3 +65,14 @@ All notable changes to the "cursor-rules-template" extension will be documented 
 
 - 优化用户界面文案
 - 改进错误处理机制
+
+## [1.0.8] - 2024-01-11
+
+### Added
+
+- 添加御姐 unity 游戏策划角色模板等
+- 优化模板
+
+### Changed
+
+- 优化模板
