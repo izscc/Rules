@@ -1,8 +1,8 @@
 {
   "name": "miao-cursor-rules",
   "displayName": "喵: 中文 Cursor Rules",
-  "description": "喵喵喵~自定义光标规则模板 | Custom cursor rules template",
-  "version": "1.0.7",
+  "description": "Cursor Rules 模板管理器 | Cursor Rules Template Manager",
+  "version": "1.0.9",
   "publisher": "kelisiWu",
   "author": "kelisiWu",
   "repository": {
@@ -37,11 +37,47 @@
       },
       {
         "command": "cursor-rules.saveAsTemplate",
-        "title": "保存为 Cursor Rules 模板"
+        "title": "保存为 Cursor Rules 模板",
+        "category": "Cursor Rules"
       },
       {
         "command": "cursor-rules.createFromTemplate",
         "title": "创建 Cursor Rules 模板文件",
+        "category": "Cursor Rules"
+      },
+      {
+        "command": "cursor-rules.previewTemplate",
+        "title": "预览 Cursor Rules 模板",
+        "category": "Cursor Rules",
+        "icon": "$(preview)"
+      },
+      {
+        "command": "cursor-rules.editTemplate",
+        "title": "编辑 Cursor Rules 模板",
+        "category": "Cursor Rules",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "cursor-rules.exportTemplate",
+        "title": "导出 Cursor Rules 模板",
+        "category": "Cursor Rules",
+        "icon": "$(export)"
+      },
+      {
+        "command": "cursor-rules.importTemplate",
+        "title": "导入 Cursor Rules 模板",
+        "category": "Cursor Rules",
+        "icon": "$(import)"
+      },
+      {
+        "command": "cursor-rules.toggleFavorite",
+        "title": "切换收藏状态",
+        "category": "Cursor Rules",
+        "icon": "$(star)"
+      },
+      {
+        "command": "cursor-rules.manageTemplates",
+        "title": "管理 Cursor Rules 模板",
         "category": "Cursor Rules"
       }
     ],
@@ -57,8 +93,109 @@
           "command": "cursor-rules.createFromTemplate",
           "group": "cursorRules"
         }
+      ],
+      "commandPalette": [
+        {
+          "command": "cursor-rules.toggleFavorite",
+          "when": "false"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "cursor-rules.importTemplate",
+          "when": "view == cursorRulesTemplates",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "cursor-rules.previewTemplate",
+          "when": "view == cursorRulesTemplates && viewItem != category",
+          "group": "inline"
+        },
+        {
+          "command": "cursor-rules.toggleFavorite",
+          "when": "view == cursorRulesTemplates && viewItem != category",
+          "group": "inline"
+        },
+        {
+          "command": "cursor-rules.editTemplate",
+          "when": "view == cursorRulesTemplates && viewItem == userTemplate",
+          "group": "1_modification"
+        },
+        {
+          "command": "cursor-rules.exportTemplate",
+          "when": "view == cursorRulesTemplates && viewItem != category",
+          "group": "1_modification"
+        }
       ]
-    }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "cursor-rules-explorer",
+          "title": "Cursor Rules",
+          "icon": "resources/dark-icon.png"
+        }
+      ]
+    },
+    "views": {
+      "cursor-rules-explorer": [
+        {
+          "id": "cursorRulesTemplates",
+          "name": "模板"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Cursor Rules",
+      "properties": {
+        "cursor-rules.showInStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "在状态栏中显示 Cursor Rules 图标"
+        },
+        "cursor-rules.favoriteTemplates": {
+          "type": "array",
+          "default": [],
+          "description": "收藏的模板列表"
+        },
+        "cursor-rules.templateCategories": {
+          "type": "object",
+          "default": {
+            "常用": [
+              "VSCode插件专家",
+              "AI助手",
+              "产品经理"
+            ],
+            "开发": [
+              "Python专家",
+              "React专家",
+              "Java专家"
+            ],
+            "游戏": [
+              "Unity猫娘",
+              "游戏设计师姐姐"
+            ],
+            "其他": []
+          },
+          "description": "模板分类配置"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "cursor-rules.applyTemplate",
+        "key": "ctrl+shift+c",
+        "mac": "cmd+shift+c",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "cursor-rules.manageTemplates",
+        "key": "ctrl+shift+m",
+        "mac": "cmd+shift+m"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

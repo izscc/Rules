@@ -2,7 +2,7 @@
 
 A VSCode extension for managing and applying .cursorrules templates.
 
-这是一个用于管理和应用 .cursorrules 模板的 VSCode 插件。
+Cursor Rules 模板管理器 | Cursor Rules Template Manager
 
 ## Features | 功能
 
@@ -10,15 +10,40 @@ A VSCode extension for managing and applying .cursorrules templates.
 - Save custom .cursorrules templates | 保存自定义的 .cursorrules 模板
 - Multiple role templates available | 提供多个角色模板
 - Easy to use command palette integration | 易于使用的命令面板集成
+- Template preview | 模板预览功能
+- Template categories | 模板分类管理
+- Template favorites | 收藏喜爱的模板
+- Template import/export | 导入导出模板
+- Status bar integration | 状态栏快速访问
+- Keyboard shortcuts | 键盘快捷键支持
+- Template management UI | 模板管理界面
 
 ## Usage | 使用方法
 
 ### Apply Template | 应用模板
 
-1. Open Command Palette (Ctrl+Shift+P or Cmd+Shift+P)
-2. Type "Apply Cursor Rules Template" | 输入"应用 Cursor 规则模板"
+**Method 1: Command Palette | 方法 1：命令面板**
+
+1. Open Command Palette (Ctrl+Shift+P or Cmd+Shift+P) | 打开命令面板
+2. Type "Apply Cursor Rules Template" | 输入"应用 Cursor Rules 模板"
 3. Select a template from the list | 从列表中选择一个模板
 4. The template will be applied to your workspace | 模板将被应用到你的工作区
+
+**Method 2: Status Bar | 方法 2：状态栏**
+
+1. Click on the Cursor Rules icon in the status bar | 点击状态栏中的 Cursor Rules 图标
+2. Select a template from the list | 从列表中选择一个模板
+
+**Method 3: Template Explorer | 方法 3：模板浏览器**
+
+1. Open the Cursor Rules view in the activity bar | 在活动栏中打开 Cursor Rules 视图
+2. Right-click on a template | 右键点击一个模板
+3. Select "Apply Template" | 选择"应用模板"
+
+**Keyboard Shortcut | 键盘快捷键**
+
+- Windows/Linux: `Ctrl+Shift+C`
+- Mac: `Cmd+Shift+C`
 
 ### Save Custom Template | 保存自定义模板
 
@@ -34,16 +59,58 @@ A VSCode extension for managing and applying .cursorrules templates.
 3. Choose a template from the list | 从列表中选择一个模板
 4. The template file will be created in the selected folder | 模板文件将被创建在选中的文件夹中
 
-Note: Custom templates take precedence over built-in templates with the same name.
-注意：自定义模板的优先级高于同名的内置模板。
+### Preview Template | 预览模板
+
+1. Open the Cursor Rules view in the activity bar | 在活动栏中打开 Cursor Rules 视图
+2. Click on the preview icon next to a template | 点击模板旁边的预览图标
+3. The template will be displayed in a preview panel | 模板将在预览面板中显示
+
+### Manage Templates | 管理模板
+
+1. Open the Cursor Rules view in the activity bar | 在活动栏中打开 Cursor Rules 视图
+2. Browse templates by category | 按分类浏览模板
+3. Mark templates as favorites | 将模板标记为收藏
+4. Edit user templates | 编辑用户模板
+5. Import/export templates | 导入/导出模板
+
+**Keyboard Shortcut | 键盘快捷键**
+
+- Windows/Linux: `Ctrl+Shift+M`
+- Mac: `Cmd+Shift+M`
+
+### Import/Export Templates | 导入/导出模板
+
+**Export | 导出**
+
+1. Open the Cursor Rules view in the activity bar | 在活动栏中打开 Cursor Rules 视图
+2. Right-click on a template | 右键点击一个模板
+3. Select "Export Template" | 选择"导出模板"
+4. Choose a location to save the template file | 选择保存模板文件的位置
+
+**Import | 导入**
+
+1. Open the Cursor Rules view in the activity bar | 在活动栏中打开 Cursor Rules 视图
+2. Click on the import icon in the view title | 点击视图标题中的导入图标
+3. Select a template file to import | 选择要导入的模板文件
+
+## Configuration | 配置
+
+This extension contributes the following settings:
+
+- `cursor-rules.showInStatusBar`: Show Cursor Rules icon in status bar | 在状态栏中显示 Cursor Rules 图标
+- `cursor-rules.favoriteTemplates`: List of favorite templates | 收藏的模板列表
+- `cursor-rules.templateCategories`: Template category configuration | 模板分类配置
 
 ## Available Templates | 可用模板
 
-- AI Assistant
-- Python Expert
-- Unity Developer
-- Product Manager
-- VSCode Expert
+- VSCode Expert | VSCode 插件专家
+- AI Assistant | AI 助手
+- Product Manager | 产品经理
+- Python Expert | Python 专家
+- React Expert | React 专家
+- Java Expert | Java 专家
+- Unity Developer | Unity 猫娘
+- Game Designer | 游戏设计师姐姐
 - And more... | 更多模板...
 - Your custom templates | 你的自定义模板
 
@@ -51,13 +118,23 @@ Note: Custom templates take precedence over built-in templates with the same nam
 
 - VSCode 1.60.0 or above | VSCode 1.60.0 或更高版本
 
-## Extension Settings | 插件设置
-
-This extension contributes the following settings:
-
-- `cursor-rules.applyTemplate`: Apply a Cursor rules template
-
 ## Release Notes | 发布说明
+
+### 1.0.9
+
+- 修复应用市场中描述显示乱码问题
+- 优化插件描述文本
+
+### 1.0.8
+
+- 添加模板预览功能
+- 添加模板分类管理
+- 添加模板收藏功能
+- 添加模板导入/导出功能
+- 添加状态栏快速访问
+- 添加键盘快捷键支持
+- 添加模板管理界面
+- 优化用户界面和错误处理
 
 ### 1.0.7
 

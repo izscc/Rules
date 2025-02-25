@@ -26,6 +26,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deactivate = exports.activate = void 0;
 const vscode = __importStar(require("vscode"));
 const templateCommands_1 = require("./commands/templateCommands");
+const enhancedTemplateCommands_1 = require("./commands/enhancedTemplateCommands");
+const templateViewProvider_1 = require("./views/templateViewProvider");
+const statusBarManager_1 = require("./views/statusBarManager");
+const templateLoader_1 = require("./utils/templateLoader");
 function activate(context) {
     try {
         console.log('Activating Cursor Rules Template extension');
@@ -35,7 +39,21 @@ function activate(context) {
         if (!fs.existsSync(storageUri.fsPath)) {
             fs.mkdirSync(storageUri.fsPath, { recursive: true });
         }
+        // 设置模板加载器上下文
+        templateLoader_1.TemplateLoader.setContext(context);
+        // 注册模板视图提供者
+        const templateViewProvider = new templateViewProvider_1.TemplateViewProvider(context);
+        const templateTreeView = vscode.window.createTreeView('cursorRulesTemplates', {
+            treeDataProvider: templateViewProvider,
+            showCollapseAll: true
+        });
+        // 注册状态栏
+        const statusBarManager = new statusBarManager_1.StatusBarManager(context);
+        // 注册命令
         (0, templateCommands_1.registerTemplateCommands)(context);
+        (0, enhancedTemplateCommands_1.registerEnhancedTemplateCommands)(context, templateViewProvider);
+        // 添加到订阅中
+        context.subscriptions.push(templateTreeView);
         console.log('Cursor Rules Template extension activated successfully');
     }
     catch (error) {

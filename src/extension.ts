@@ -1,5 +1,9 @@
 import * as vscode from 'vscode'
 import { registerTemplateCommands } from './commands/templateCommands'
+import { registerEnhancedTemplateCommands } from './commands/enhancedTemplateCommands'
+import { TemplateViewProvider } from './views/templateViewProvider'
+import { StatusBarManager } from './views/statusBarManager'
+import { TemplateLoader } from './utils/templateLoader'
 
 export function activate(context: vscode.ExtensionContext) {
   try {
@@ -12,7 +16,26 @@ export function activate(context: vscode.ExtensionContext) {
       fs.mkdirSync(storageUri.fsPath, { recursive: true })
     }
 
+    // 设置模板加载器上下文
+    TemplateLoader.setContext(context)
+
+    // 注册模板视图提供者
+    const templateViewProvider = new TemplateViewProvider(context)
+    const templateTreeView = vscode.window.createTreeView('cursorRulesTemplates', {
+      treeDataProvider: templateViewProvider,
+      showCollapseAll: true
+    })
+    
+    // 注册状态栏
+    const statusBarManager = new StatusBarManager(context)
+
+    // 注册命令
     registerTemplateCommands(context)
+    registerEnhancedTemplateCommands(context, templateViewProvider)
+
+    // 添加到订阅中
+    context.subscriptions.push(templateTreeView)
+
     console.log('Cursor Rules Template extension activated successfully')
   } catch (error) {
     console.error('Failed to activate Cursor Rules Template extension:', error)
